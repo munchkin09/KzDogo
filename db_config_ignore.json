@@ -1,0 +1,11 @@
+wq => fdasf354t541e3290dsj838
+{ user: "web_writeRead",
+  pwd: "fdasf354t541e3290dsj838",
+  customData: { },
+  roles: [
+    { role: "readWrite", db: "kzdog" }
+  ]
+}
+
+
+bitbucket server ElKTApetezca

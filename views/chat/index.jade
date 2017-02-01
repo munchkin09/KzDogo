@@ -1,0 +1,20 @@
+block content
+    ul#messages
+    form()#chatin
+        input(autocomplete="off")#m
+        input(type="submit" value="Enviar")#soso
+    script().
+      var name = '#{dataUser.profile.nombre_completo.nombre}' + " " + '#{dataUser.profile.nombre_completo.apellido_uno}';
+      var profileId = '#{dataUser.profile._id}';
+
+        
+
+        /*$(window).load(function()
+        {
+            chat.emit('connection_in', name);
+        });
+
+        $(window).unload(function()
+        {
+            chat.emit('connection_out', name);
+        });*/

@@ -1,0 +1,98 @@
+<<<<<<< HEAD
+=======
+script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDBrYR6grAJ4Jm6ZFIYOoppmZHC5QPJzb0&sensor=true").
+script().
+   (function(f,b){
+       var c;
+       f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
+       f._hjSettings={hjid:10314, hjsv:3};
+       c=b.createElement("script");c.async=1;
+       c.src="//static.hotjar.com/c/hotjar-10314.js?sv=3";
+       b.getElementsByTagName("head")[0].appendChild(c); 
+   })(window,document);
+script(type='text/javascript').
+  $(document).ready(function(){
+     var x,
+     map,
+     mapOptions,
+     geoLoc = { lat : 0, lon : 0, accu : 0},
+     coords,
+     bOnLoad = true;
+     
+     var marker = {
+        path: 'M 10, 10',
+        fillColor: 'yellow',
+        fillOpacity: 0.8,
+        scale: 1,
+        strokeColor: 'gold',
+        strokeWeight: 14
+      };
+    
+        
+
+     function showPosition(position)
+     {
+        geoLoc.lat = parseFloat(position.coords.latitude);
+        geoLoc.lon = parseFloat(position.coords.longitude);
+        geoLoc.accu = parseFloat(position.coords.accuracy);
+        initialize(geoLoc);
+     }
+
+     $(document).ready(function()
+     {
+        x = document.getElementById("demo");
+
+        navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
+        
+     });
+     
+     function initialize(config)
+     {
+        
+        mapOptions = {
+           center: new google.maps.LatLng(config.lat, config.lon),
+           zoom: 16,
+           mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        //alert(geoLoc.lat + " " + geoLoc.lon);
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+           mapOptions);
+           setMarkers(map);
+     }
+
+     function setMarkers(map,lat,lan)
+     {
+         // Add markers to the map
+
+         // Origins, anchor positions and coordinates of the marker
+         // increase in the X direction to the right and in
+         // the Y direction down.
+         
+        var image = {
+           url: '/img/dogPOI.png',
+           // This marker is 20 pixels wide by 32 pixels tall.
+           size: new google.maps.Size(32, 32),
+           // The origin for this image is 0,0.
+           origin: new google.maps.Point(0,0),
+           // The anchor for this image is the base of the flagpole at 0,32.
+           anchor: new google.maps.Point(0, 32)
+        };
+
+     
+        var myLatLng = new google.maps.LatLng(geoLoc.lat, geoLoc.lon);
+        var marker = new google.maps.Marker({
+           position: myLatLng,
+           map: map,
+           icon: image,
+           title: 'Inicial',
+           zIndex: 0
+        });
+        
+     }  
+
+           
+     function errorHandler(error) {
+        alert('Attempt to get location failed: ' + error.message);
+     }
+>>>>>>> Dev
+block content

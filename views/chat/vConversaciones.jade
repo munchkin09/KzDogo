@@ -1,0 +1,13 @@
+block content
+  div#chats.panel-body.list-group
+    each chat in dataConversaciones
+      button(value='#{chat._id}').btnMensaje.list-group-item.btn-link
+        img(src='img/default_p.jpg').img-mascota.img-circle
+        br
+        h6.text-center Chat con 
+          small #{chat.profiles_id[0].nombre}
+        //-input(type='hidden' value='#{pet_receiv._id}')
+        //-button(value='true').btnAction.btn.btn-success.btn-md.btn-link
+        //-span.glyphicon.glyphicon-ok
+        //-button(value='false').btnAction.btn.btn-danger.btn-md.btn-link
+        //-span.glyphicon.glyphicon-remove

@@ -1,0 +1,46 @@
+extends layout
+block content
+   div#form
+      div(role="tabpanel").tab-pane.fade.in.active#login
+        div.row
+            div.col-xs-12.col-sm-12.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+               p.text-center
+                  img(src='/img/writing_dog.png').img-thumbnail.img-mascota-lg
+                  h1.text-center.login SignUp Form
+               form(class='form-signup', action='/auth/signup', method='POST')
+                  input(type='text', name='username' class='form-control', placeholder='Email',required, autofocus)
+                  input(type='password',id='pass', name='password', class='form-control', placeholder='Password', required)
+                  input(type='password',id='vPass', name='v_pass', class='form-control', placeholder='Retype Password', required)
+                  label(id='warning' class='error') Pass don't match
+                  input(type='text' name='nombre' class='form-control', placeholder='Name',required)
+                  input(type='text' name='apellido1' class='form-control', placeholder='First Family name',required)
+                  input(type='text' name='apellido2' class='form-control', placeholder='Second Family name')
+                  button(class='btn btn-lg btn-primary btn-block', type='submit', value='Dar de alta') Create New Account
+                  span.clearfix
+            #message
+            if message
+               h1.text-center.error-message #{message}
+
+     script(type='text/javascript').
+      $(document).ready(function()
+      {
+         $("#warning").hide()
+         $("#pass").focusout( function(){
+            if (  ($("#pass").val() != $("#vPass").val()) && ($("#vPass").val() != "") )
+            {
+               $("#warning").show()
+            } else {
+               $("#warning").hide()
+            }
+            
+         })
+         $("#vPass").focusout( function(){
+            if ($("#pass").val() != $("#vPass").val())
+            {
+               $("#warning").show()
+            } else {
+               $("#warning").hide()
+            }
+            
+         })
+      });

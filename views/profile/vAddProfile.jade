@@ -1,0 +1,88 @@
+extends layout
+block content
+   div#form
+      label.colorRojo formulario Alta 
+      br
+      br
+      form(action='/upload' enctype='multipart/form-data' method="post")
+         input(type="file" name="file" accept="image/*")#imgInp
+         input(type="submit" value="Upload")
+         img(src="#" alt="Imagen de perfil")#blah.img-circle
+      form(action='/newUser', method='post')
+         label nombre
+         input(
+            type='textbox'
+            name='nombre'
+         )
+         br
+         label primer apellido 
+         input(
+            type='textbox'
+            name='apellido1'
+         )
+         br               
+         label segundo apellido
+         input(
+            type='textbox'
+            name='apellido2'
+         )
+         br
+         label email
+         input(
+            type='textbox'
+            name='email'
+         )
+         br
+         
+         label password
+         input(
+            type='password'
+            name='pass'
+         )
+         input(
+         type='password'
+         name='v_pass'
+         )
+         br
+         br
+         div#zonaMascota
+            div#mascota1
+               input(type='textbox' name='mascotas[0][nombre]')
+               input(type='textbox' name='mascotas[0][raza]')
+            button(text='Añadir más mascotas!')#addMascota
+         input(
+            type='submit'
+         )
+   script(type='text/javascript').
+      var iMascotas = 0;   
+      $(document).ready(function()
+      {
+         $('#addMascota').click(function()
+         {
+            
+         });
+
+      });
+      
+      function readURL(input)
+      {
+      
+         if (input.files && input.files[0])
+         {
+            var reader = new FileReader();
+            
+            reader.onload = function (e)
+            {
+               $('#blah').attr('src', e.target.result);
+            }
+            
+               reader.readAsDataURL(input.files[0]);
+         }
+      }
+         
+      $("#imgInp").change(function()
+      {
+         readURL(this);
+      });
+
+      

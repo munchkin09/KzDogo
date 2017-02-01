@@ -1,0 +1,173 @@
+block content
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button( data-dismiss="modal" aria-label="Close").close
+          span(aria-hidden="true") &times;
+          
+        h4.text-center.modal-title=title
+      div.modal-body#form
+        form()#frmImg
+           div.row.form-group
+              div.col-lg-2
+                 img(src="img/default.png" alt="Imagen de perfil")#blah.img-circle.img-mascota
+              div.col-lg-10.form-group
+                 input(type="file" name="filemon" accept="image/*")#imgInp
+           div.row.form-group
+              div.col-lg-12
+                 div.progress
+                    div(role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100').progress-bar.progress-bar-success.progress-bar-striped
+           div.row
+              div.col-lg-12
+                 input(type="submit" value="Subir foto").btn.btn-default
+        form()#frmMascota
+           input(type='hidden' name='profile_id' value='#{data.profile_id}')
+           input(type='hidden' name='pathMascotaImg')#pathMascotaImg
+           div.row.form-group
+              div.col-lg-12
+                 input(type='text' placeholder='Nombre de la mascota' name='nombre_mascota').form-control
+           br/
+           div.row.form-group
+              div.col-lg-4#auto_raza
+                 input(type='text' placeholder='Raza de la mascota' name='opt_raza')#query_razas.form-control.typeahead
+              div.col-lg-4
+                 input(type='text' placeholder='Color del pelaje' name='opt_color')#query_colores.form-control.typeahead
+              div.col-lg-4
+                 input(type='number' max='20' min='1' placeholder='1' name='edad').form-control
+           br/
+           div.row.form-group
+              div.col-lg-12
+                 div.panel.panel-warning
+                   div.panel-heading
+                      h2.text-center Características perrunas
+                   div#mascotasBody.panel-body
+                    each caract in data.lista_caract
+                       | 
+                       label #{caract.caracteristica}
+                          | 
+                          input(type='checkbox')
+                             | 
+                 br/
+           div.row.form-group
+              div.col-lg-12
+                 input(type="submit" value="Añádeme!")#datosPerfil.btn.btn-default
+                 br/
+           script(type='text/javascript').
+              var razas = !{JSON.stringify(data.lista_razas)};
+              var colores = !{JSON.stringify(data.lista_colores)};
+              $('#query_razas').typeahead({
+                      local: razas
+              });
+              
+              $('#query_colores').typeahead({
+                      local: colores
+              });
+              
+              $('.tt-query').css('background-color','#fff');
+              $(document).ready(function()
+              {              
+              });
+              
+              notif.on('progreso', function(data)
+              {
+                  $('.progress-bar').css('width', data.porcentaje+'%').attr('aria-valuenow', data.porcentaje);
+              });
+               
+               notif.on('final', function(data)
+               {
+                  $('.progress-bar').css('width', data.porcentaje+'%').attr('aria-valuenow', data.porcentaje);
+                  $('.progress-bar').fadeOut(1000);
+               });
+              
+              $('#frmMascota').submit(function(e)
+              {
+                 e.preventDefault();
+                 $.ajax(
+                 {
+                    async: true,
+                    dataType: "json",
+                    success: function (data)
+                    {
+                       var img = (data.resultado.img_perfil != '') ? data.resultado.img_perfil : 'img/default.png';
+                       var newMascota = "<a href='/getMascota/"+ data.resultado.mascota_id +"' class='getMascota'><img src='upload/"+ img +"' clasS='img-circle img-mascota' /></a>";
+                       $('#modalMascota').modal('hide');
+                       $('#mascotasBody').prepend(newMascota);
+                    },
+                    error: function(err)
+                    {
+                       alert(err);
+                    },
+                    type: "post",
+                    url: "/postMascota",
+                    data : $("#frmMascota").serialize()
+                 });
+                 
+              });
+              
+              
+              $('#frmImg').submit(function(e)
+              {
+                 $('.progress-bar').addClass('active');
+                 $('.progress-bar').fadeIn(1000);
+                 var file = new FormData(this);
+                 //file.append();
+                 $.ajax(
+                 {
+                    data: file,
+                    url: '/uploadProfilePic',
+                    async: true,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data)
+                    {
+                       //alert('Foto subida ' + data.toSource());
+                       if(data.success)
+                       {
+                          $('#pathMascotaImg').val(data.folder);
+                       }
+                       /*$.ajax(
+                          data : data,
+                          url '/updateMascotaPic',
+                          async : true,
+                          type : 'POST',
+                          success : function(data)
+                          {
+                             alert('Animal salvado' + data);
+                          }
+                       );*/
+                    },
+                    error: function(err)
+                    {
+                       alert(err.toString());
+                    }
+                 });
+                 e.preventDefault();
+              });
+              function readURL(input)
+              {
+                 if (input.files && input.files[0])
+                 {
+                    var reader = new FileReader();
+                    reader.onload = function (e)
+                    {
+                    	$('#blah').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                 }
+              }
+              
+              
+                 $("#imgInp").change(function()
+                 {
+                    if ($(this).val() == "") 
+                    {
+                      return;
+                    }
+                    else
+                    {
+                    readURL(this);
+                    }
+                 
+                    
+                 });

@@ -1,0 +1,29 @@
+block content
+   div.container-fluid
+      div.row
+         div#map_canvas.col-lg-12.col-md-12.col-sm-12.col-xs-12            
+   script(type='text/javascript').
+      var opts = { onText : 'SI', offText : 'NO', onColor : 'success', offColor : 'danger', size : 'mini', handleWidth : 40 }
+      $("[name='geoloc_amigos']").bootstrapSwitch(opts);
+      $('input[name="geoloc_amigos"]').on('switchChange.init', function(event, state) {
+        console.log(this); // DOM element
+      });
+      
+      $("[name='geoloc_grupos']").bootstrapSwitch(opts);
+      $('input[name="geoloc_grupos"]').on('switchChange.init', function(event, state) {
+        console.log(this); // DOM element
+      });
+      
+      $("[name='geoloc_servicios']").bootstrapSwitch(opts);
+      $('input[name="geoloc_servicios"]').on('switchChange.init', function(event, state) {
+        console.log(this); // DOM element
+      });
+      
+      $(document).ready(function(){   
+          var geo_options = {
+              enableHighAccuracy: true, 
+              maximumAge        : 30000, 
+              timeout           : 27000
+            };
+            navigator.geolocation.getCurrentPosition(showPositionInicial, errorMapHandler, geo_options);
+       });

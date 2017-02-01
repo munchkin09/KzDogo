@@ -1,0 +1,310 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+@font-face {
+    font-family: Triomphe;
+    src: url(/fonts/Triomphe/Triomphe-Light.otf);
+}
+
+@font-face {
+    font-family: TriompheBold;
+    src: url(/fonts/Triomphe/Triomphe-Bold.otf);
+}
+/*! normalize.css v1.0.0 | MIT License | git.io/normalize */
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html,button,input,select,textarea{font-family:sans-serif}body{margin:0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em 40px}dfn{font-style:italic}mark{background:#ff0;color:#000}p,pre{margin:1em 0}code,kbd,pre,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:'';content:none}small{font-size:75%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}dl,menu,ol,ul{margin:1em 0}dd{margin:0 0 0 40px}menu,ol,ul{padding:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none}img{border:0;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal;*margin-left:-7px}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;*overflow:visible}button[disabled],input[disabled]{cursor:default}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*height:13px;*width:13px}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
+
+html,body{height:100%;background-color:rgb(255, 255, 255);padding-left: 0;padding-right: 0;}
+
+h1,h2,h3,h4,h5,h6
+{
+  font-family: 'TriompheBold', cursive !important;
+  font-weight: 400 !important;
+}
+
+/**
+*  CSS Propios
+**/
+
+.btn {
+    border-radius: 0px !important;
+}
+
+body
+{
+   font-family: 'Triomphe', cursive !important;
+}
+.logo-marca
+{
+   width:48px;
+   height:48px;
+}
+
+
+.navbar-brand
+{
+   padding:0px !important;
+}
+
+/* Cosas para el index para hacer login de la app */
+.img_uno
+{
+  background-image:url('/img/img_uno.jpg');
+}
+
+.img_dos
+{
+  background-image:url('/img/img_dos.jpg');
+}
+
+.img_tres
+{
+  background-image:url('/img/img_tres.jpg');
+}
+
+
+.carousel .item .active{height:100%;}
+.carousel-inner{height:100%;}
+.fill{width:100%;height:100%;background-position:center;background-size:cover;
+      padding-left: 0px;
+      padding-right: 0px;}
+
+
+.fullwidth
+{
+    width:100%;
+    min-height: 70%;
+    max-height: 90%;
+    height:72%;
+    position: relative !important;
+}
+
+.login-title
+{
+  color: black;
+}
+
+.facebook_button {
+    display: inline-block;
+
+    background: #627aac url(img/facebook_small.png) left no-repeat;
+
+    border-top: 1px solid #29447e;
+    border-right: 1px solid #29447e;
+    border-bottom: 1px solid #1a356e;
+    border-left: none;
+
+    height: 22px;
+
+    padding-right: 7px;
+    padding-left: 29px;
+
+    font-weight: bold;
+    font-size: 11px;
+    color: white;
+    text-decoration: none;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    line-height: 22px;
+
+    cursor: pointer;
+
+}
+
+/* FIN Cosas para el index para hacer login de la app */
+
+
+
+/* Css para la botonera superior */
+#main_tabs li
+{
+   width: 33%;
+}
+
+.badge-notify{
+   background:red;
+   position:relative;
+   top: 6% !important;
+   left: 50%;
+  }
+
+.badge-notify-zero{
+   visibility:hidden;
+   background:red;
+   position:relative;
+   top: 6% !important;
+   left: 50%;
+  }
+
+/* FIN Css para la botonera superior */
+
+.error{
+   display : block;
+   color : red;
+   text-align : center;
+   line-height : 150%;
+   font-size : 100%;
+}
+
+#kz-container
+{
+   margin-top:50px !important;
+}
+
+
+
+/* Tamaños de imágenes para perfiles e iconos de enlaces a perfiles */
+.img-mascota
+{
+  width: 64px;
+  height:64px;
+}
+
+.img-mascota-lg
+{
+  width: 256px;
+  height:256px;
+}
+
+p.txtBoton
+{
+  margin: 0!important;
+}
+
+
+.panel
+{
+  margin-bottom : 0px !important;
+  overflow: hidden;
+}
+
+/* Css Zona Chat */
+
+.media
+{
+  border-top: 1px solid grey !important;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+#messages
+{
+  /*overflow : scroll;*/
+  height:90%;
+  overflow-x:hidden;
+}
+
+.txtChat
+{
+  paddign-right:0px;
+}
+
+/* sub-grupo Zona Grupos  */
+.bootstrap-switch
+{
+   height:35px;
+}
+
+/* FIN Css Zona Chat */
+
+/* INICIO Css Zona Mapa */
+#map_canvas
+{
+   height:100%;
+}
+
+/* FIN Css Zona Mapa */
+
+/* INICIO Css Zona Autocomplete */
+
+.twitter-typeahead{
+width:100%;
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+}
+.tt-dropdown-menu {
+  min-width: 160px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+  width:100%;
+}
+
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+  color: #fff;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+/* FIN Css Zona Autocomplete */
+
+
+/* Css Zona útiles */
+
+.hidden
+{
+   display:none;
+}
+
+/* Estilos por resolución */
+@media (max-width: 767px) {
+
+  .badge-notify{
+   background:black !important;
+   position:relative;
+   top: 6% !important;
+   left: 50%;
+  }
+
+  .badge-notify-zero{
+   background:black;
+   position:relative;
+   top: 6%;
+   left: 50%;
+  }
+
+  .nav-tabs > li > a
+  {
+    font-size:10px !important;
+  }
+
+  .img-mascota-md
+  {
+    width: 128px;
+    height:128px;
+  }
+
+}

@@ -1,0 +1,32 @@
+block content 
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          button( data-dismiss="modal" aria-label="Close").close
+            span(aria-hidden="true") &times;
+            
+          h4.modal-title Modal title
+        div.modal-body
+          h1.text-center
+          if dataMascota.img_perfil
+             img(src="upload/#{dataMascota.img_perfil}" alt="#{dataMascota.nombre}")#blah.img-circle.img-mascota-lg
+          else
+             img(src="img/default.png" alt="#{dataMascota.nombre}")#blah.img-circle.img-mascota-lg
+         h2.text-center #{dataMascota.nombre}
+         div.row
+            div.col-xs-12
+               div.row
+                  div.col-xs-6
+                     p Prueba
+                  div.col-xs-6
+                     p Otra prueba
+         div.row
+            div.col-xs-12
+               div.row
+                  div.col-xs-6
+                     p Prueba
+                  div.col-xs-6
+                     p Otra prueba
+        div.modal-footer
+          button(data-dismiss="modal").btn.btn-default Close
+          button().btn.btn-primary Save changes

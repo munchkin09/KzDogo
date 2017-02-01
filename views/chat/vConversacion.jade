@@ -1,0 +1,46 @@
+if(resultado != 'no ok')
+  block content
+    div#messages
+    form()#chatin
+      div.input-group
+       input(autocomplete="off" placeholder='Escribe aquí...')#m.form-control.txtChat
+       span.input-group-btn.text-center
+          input(type="submit" value="Enviar")#soso.btn.btn-primary.btnSend
+
+       input(type="hidden" value='')
+    script().
+      var nombre;
+      var total;
+      $(document).ready(function()
+      {
+        total = !{JSON.stringify(dataConversacion)};
+        profileId = '#{dataUser._id}';
+        nombre = '#{dataUser.nombre_completo.presentable}';       
+        $('#messages').append(loadHistorial(total));
+      });
+      
+      $(document).on('click', '.lnk_profile', function(e)
+      {
+         e.preventDefault();
+         setProfileURL(this);
+         return false;
+      });
+
+      $('#chatin').submit(function(e){
+        e.preventDefault();
+        var fecha = Date.now();
+        var data = { name : nombre, room : total._id, msg : $('#m').val(), profile_id : profileId, dtEnviado : fecha.toString() };
+        chat.emit('chat message', data);
+        $('#m').val('');
+      });
+      
+      $(document).unload(function()
+      {
+        profileId = '';
+      });
+      
+      
+      
+        
+      
+      

@@ -1,0 +1,55 @@
+//- Ejemplo de comentario en jade
+extends layout
+block content
+  div.container.fill
+    div(style='position:absolute;z-index:100;background-color:rgba(255,255,255,0.8);width:100%;').tab-panel
+       ul(role="tablist").nav.nav-tabs
+          li(role="presentation").active
+             a(href="#login" aria-controls="login" role="tab" data-toggle="tab") Log-in local
+          li(role="presentation")
+             a(href="#facebook" aria-controls="facebook" role="tab" data-toggle="tab") Log-in facebook
+          li(role="presentation")
+             a(href="#newAccount" aria-controls="account" role="tab" data-toggle="tab") Crear una cuenta!
+       div.tab-content
+          div(role="tabpanel" ).tab-pane.fade.in.active#login
+               h1.text-center.login-title Bienvenido
+               p.text-center
+                 img(src='/img/default.png').img-circle.img-mascota-lg.img-mascota-md
+               form(class='form-signin', action='/auth/login', method='POST')
+                input(type='text', name='username' class='form-control', placeholder='Email',required, autofocus)
+                input(type='password', name='password' class='form-control', placeholder='Password', required)
+                button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+                a(href='/auth/recoverpass', class='text-center recover-pass') Lost Password?
+                span.clearfix
+          div(role="tabpanel").tab-pane.fade.text-center#facebook
+            br
+            br
+            button#btnAuthFb.facebook_button Log in with Facebook
+            br
+            br
+          div(role="tabpanel").tab-pane.fade#newAccount
+             a(href='/auth/signup').text-center Create an account
+    div#myCarousel.carousel.slide
+      div.carousel-inner
+        div.active.item
+          div.fill.img_uno
+            div.container
+        div.item
+          div.fill.img_dos
+            div.container
+  div.container
+    script().
+      $(document).ready(function()
+      {
+          $('#myCarousel').on('slide.bs.carousel', function () 
+          {
+              // do something…
+              $('.carousel-inner').append("<div class='item'><div class='fill img_tres'</div></div>");
+          })
+          $('.carousel').carousel({interval:8000});
+      });
+      $('#btnAuthFb').click(function(e)
+      {
+        location.href = '/auth/facebook';
+      })
+             

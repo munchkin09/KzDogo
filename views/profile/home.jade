@@ -1,0 +1,70 @@
+//- Ejemplo de comentario en jade
+block content
+   div.container
+     h1.text-center Woof! #{dataUser.nombre_completo.nombre}  #{dataUser.nombre_completo.apellido_uno}
+     p.text-center 
+      img(src='img/default_p.jpg').img-circle.img-mascota-lg
+     div#form.row
+        div.col-lg-12
+          label.colorRojo=titulo
+          h2.text-center nombre #{dataUser.nombre_completo.nombre}
+        div.col-lg-12
+          label#dataChange.text-center 1er apellido #{dataUser.nombre_completo.apellido_uno}
+        br/
+        if(dataUser.nombre_completo.apellido_dos)
+           label segundo apellido 
+           label=dataUser.nombre_completo.apellido_dos
+           br/
+        button(value=dataUser._id)#updateUser.btn.btn-success Actualizar perfil
+        br/
+        br/
+        
+        div.panel.panel-warning
+           div.panel-heading
+              h2 Mascotas
+           div#mascotasBody.panel-body
+              if dataUser.mascotas
+                 each mascota in dataUser.mascotas
+                    a(href='/getMascota/#{mascota.mascota_id}').getMascota
+                       if mascota.img_perfil
+                          img(src='upload/#{mascota.img_perfil}').img-circle.img-mascota
+                       else
+                          img(src='img/default.png').img-circle.img-mascota
+                button(value=dataUser._id)#addMascota.btn.btn-success.btn-link.img-circle 
+                    span.glyphicon.glyphicon-plus
+   script(type='text/javascript').
+      $(document).ready(function()
+      {
+         $('#updateUser').click(function()
+         {
+            $.ajax(
+            {
+               async: true,
+               dataType: "html",
+               success: function (data, textStatus)
+               {
+                  $('#form').html(data);
+               },
+               type: "get",
+               url: "/updateProfile/" + this.value
+            });
+         });
+         
+         $('#addMascota').click(function()
+         {
+          notif.emit('checked');
+            $.ajax(
+            {
+               async: true,
+               dataType: "html",
+               success: function (data, textStatus)
+               {
+                  mascota = data;
+                  $('#modalMascota').modal('show');
+               },
+               type: "get",
+               url: "/getAddMascotas"
+            });
+         });         
+      });
+      

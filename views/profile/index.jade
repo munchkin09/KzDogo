@@ -1,0 +1,36 @@
+block content
+   div.container
+     h1.text-center Woof! #{dataUser.profile.nombre_completo.nombre}  #{dataUser.profile.nombre_completo.apellido_uno}
+     p.text-center 
+      img(src='img/default_p.jpg').img-circle.img-mascota-lg
+     div#form.row
+        div.col-xs-12
+          h1.colorRojo.text-center=titulo
+          h2.text-center nombre #{dataUser.profile.nombre_completo.nombre}
+        div.col-xs-12
+          label#dataChange 1er apellido #{dataUser.profile.nombre_completo.apellido_uno}
+          br/
+          if(dataUser.profile.nombre_completo.apellido_dos)
+            label segundo apellido 
+             label#dataChange=dataUser.profile.nombre_completo.apellido_dos
+             br/
+          div.row
+            div.col-xs-6
+              if dataUser.es_amigo
+                 button(value=dataUser.profile._id)#addNewConversation.btn.btn-primary Enviar mensaje
+                 input(type='hidden' value='#{dataUser._id}')
+              else
+                 button(value=dataUser.profile._id).addFriend.btn.btn-primary Añadir amigo              
+        br/
+      div.row  
+        div.panel.panel-primary
+           div.panel-heading
+              h2 Mascotas
+           div.panel-body
+              if dataUser.profile.mascotas
+                 each mascota in dataUser.profile.mascotas
+                    a(href='/getMascota/#{mascota.mascota_id}').getMascota
+                       if mascota.img_perfil
+                          img(src='upload/#{mascota.img_perfil}').img-circle.img-mascota
+                       else
+                          img(src='img/default.png').img-circle.img-mascota

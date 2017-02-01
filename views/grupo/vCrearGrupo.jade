@@ -1,0 +1,23 @@
+block content 
+   form#frmGrupo.text-center
+       h2
+          img(src="img/grupo-logo.png" alt="Crear nuevo grupo")#blah.img-mascota-lg.img-mascota-md
+       div().form-group
+          h3 Crear grupo
+          input(type='text' placeholder='Nombre del grupo' name='nombre_grupo' required).form-control
+       div().form-group
+          label ¿Es privado el grupo?
+          input(type='checkbox' name='public_private')
+       div.panel.panel-primary
+         div.panel-heading
+            h3.text-center Integrantes
+         div#integrantesContainer.panel-body.list-group
+            button()#addGroupProfile.btn-link.list-group-item
+               span.glyphicon.glyphicon-plus
+       input(type='submit')#btnCrearGrupo.btn.btn-primary.btn-block 
+   script().
+      var opts = { onText : 'SI', offText : 'NO', onColor : 'success', offColor : 'danger', size : 'normal', handleWidth : 60 }
+      $("[name='public_private']").bootstrapSwitch(opts);
+      $('input[name="public_private"]').on('switchChange.init', function(event, state) {
+        //console.log(this); // DOM element
+      });

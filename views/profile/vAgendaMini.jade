@@ -1,0 +1,20 @@
+div.modal-dialog
+  div.modal-content
+    div.modal-header
+      h4.modal-title.text-center #{title}
+      button( data-dismiss="modal" aria-label="Close").close
+        span(aria-hidden="true") &times;      
+    div()#friendContainer.list-group
+      if(dataProfiles.amigos)
+        each amigo in dataProfiles.amigos
+          p #{amigo}
+          a(id='#{amigo.amigo_id }').list-group-item.agenda
+            //-img(src='img/default_p.jpg').img-mascota.img-circle
+            | #{amigo.nombre}
+            input(type='hidden' name='peticiones[]' value='#{amigo.amigo_id }/#{amigo.nombre}')
+            
+    div.modal-footer
+      button()#btnAddProfiles.btn.btn-success Añadir al grupo
+      button(data-dismiss='modal').btn.btn-danger Cancelar
+   
+   

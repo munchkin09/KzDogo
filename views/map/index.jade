@@ -1,0 +1,200 @@
+block content
+   div#map_canvas.fullwidth
+   div#footer_container.fullwidth
+      input(type='button' value='Añadir POI')#addPOI
+      input(type='button' value='Ver rutas cercanas')#loadRoute
+      input(type='button' value='Empezar a grabar ruta')#recRoute
+      input(type='button' value='Parar grabación')#stopRoute
+   script(type='text/javascript').
+      var data = [],
+         wp,
+         mp_point_1 = [];
+      $(document).ready(function(){
+         var x,
+         map,
+         mapOptions,
+         geoLoc = { lat : 0, lon : 0, accu : 0},
+         coords,
+         bOnLoad = true;
+         
+         
+         var marker = {
+            path: 'M 10, 10',
+            fillColor: 'yellow',
+            fillOpacity: 0.8,
+            scale: 1,
+            strokeColor: 'gold',
+            strokeWeight: 14
+          };
+          var geo_options = {
+              enableHighAccuracy: true, 
+              maximumAge        : 30000, 
+              timeout           : 27000
+            };
+          
+          x = document.getElementById("demo");
+          navigator.geolocation.getCurrentPosition(showPosition, errorHandler, geo_options);
+        
+            
+
+         function showPosition(position)
+         {
+            
+            geoLoc.lat = parseFloat(position.coords.latitude);
+            geoLoc.lon = parseFloat(position.coords.longitude);
+            geoLoc.accu = parseFloat(position.coords.accuracy);
+            initialize(geoLoc);
+         }
+
+         
+         
+         function initialize(config)
+         {
+            
+            mapOptions = {
+               center: new google.maps.LatLng(config.lat, config.lon),
+               zoom: 16,
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            //alert(geoLoc.lat + " " + geoLoc.lon);
+            map = new google.maps.Map(document.getElementById("map_canvas"),
+               mapOptions);
+               setMarkers(map);
+         }
+
+         function setMarkers(map,lat,lan)
+         {
+             // Add markers to the map
+
+             // Origins, anchor positions and coordinates of the marker
+             // increase in the X direction to the right and in
+             // the Y direction down.
+             
+            var image = {
+               url: '/img/dogPOI.png',
+               // This marker is 20 pixels wide by 32 pixels tall.
+               size: new google.maps.Size(32, 32),
+               // The origin for this image is 0,0.
+               origin: new google.maps.Point(0,0),
+               // The anchor for this image is the base of the flagpole at 0,32.
+               anchor: new google.maps.Point(0, 32)
+            };
+
+         
+            var myLatLng = new google.maps.LatLng(geoLoc.lat, geoLoc.lon);
+            var marker = new google.maps.Marker({
+               position: myLatLng,
+               map: map,
+               icon: image,
+               title: 'Inicial',
+               zIndex: 0
+            });
+            
+         }  
+
+               
+         function errorHandler(error) {
+            alert('Attempt to get location failed: ' + error.message);
+         }
+         
+         $('#addPOI').on('click', function()
+         {
+            //alert("POI add");
+            navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
+            $.ajax({
+               async: true,
+               dataType: "json",
+               success: function (data, textStatus)
+               {
+                  alert("ok");
+               },
+               type: "post",
+               url: "/savePOI",
+               data : { nombre : "Carlos", type : "POI", geoType : "Point", coords : [geoLoc.lat, geoLoc.lon], prop : "Me cagüen sos!" }
+            });
+         });
+
+         $('#loadRoute').on('click', function()
+         {
+            //alert("POI add");
+            $.ajax(
+            {
+               async: true,
+               dataType: "json",
+               success: function (data, textStatus)
+               {
+                  data.forEach(function(item, index, arr)
+                     {
+                        geoLoc.lat = item.obj.position.coordinates[0];
+                        geoLoc.lon = item.obj.position.coordinates[1];
+                        setMarkers(map);
+                     });
+               },
+               type: "get",
+               url: "/getPOIs/" + geoLoc.lat + "/" + geoLoc.lon
+            });
+         });
+
+         $('#recRoute').on('click', function()
+         {
+            navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
+            mp_point_1.push([geoLoc.lat,geoLoc.lon]);
+            console.log(mp_point_1.toSource());
+            wp  = navigator.geolocation.watchPosition(recPosition);
+
+            //alert("POI add");
+            /*$.ajax(
+            {
+               async: true,
+               dataType: "json",
+               success: function (data, textStatus)
+               {
+                  data.forEach(function(item, index, data)
+                     {
+                        geoLoc.lat = item.obj.position.coordinates[0];
+                        geoLoc.lon = item.obj.position.coordinates[1];
+                        setMarkers(map);
+                     });
+               },
+               type: "get",
+               url: "/getPOIs/" + geoLoc.lat + "/" + geoLoc.lon
+            });*/
+         });
+
+
+         $('#stopRoute').on('click', function()
+         {
+            navigator.geolocation.clearWatch(wp);
+            alert(data);
+            data.forEach(function(item, index, data)
+            {
+               geoLoc.lat = item.obj.position.coordinates[0];
+               geoLoc.lon = item.obj.position.coordinates[1];
+               setMarkers(map);
+            });
+            //alert("POI add");
+            /*$.ajax(
+               {
+               async: true,
+               dataType: "json",
+               success: function (data, textStatus)
+               {
+                  
+               },
+               type: "post",
+               url: "/saveRoute",
+               data : { nombre : "Carlos", type : "Route", geoType : "MultiLineString", coords : data.toSource(), prop : "Una rústica ruta guf guf!" }
+            });*/
+         });
+       });
+      function recPosition(position)
+      {
+         mp_point_1.push([parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)]);
+         data.push(mp_point_1);
+         mp_point_1.splice(0,1);
+      }
+
+      function failRecord(err)
+      {   
+         alert(err.message);
+      }

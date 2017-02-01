@@ -1,0 +1,45 @@
+extends layout
+block content
+	button(value=data.id)#updateUser Actualizar perfil
+	button#addFur Añadir mascota
+	div#form
+		label.colorRojo=titulo
+		br/
+		label nombre 
+		label=data.nombre_completo.nombre
+		br/
+		
+		label primer apellido 
+		label=data.nombre_completo.apellido_uno
+		br/
+		
+		label segundo apellido 
+		label=data.nombre_completo.apellido_dos
+		br/
+		
+		label email 
+		label=data.e_mail
+		br/
+		
+		label password
+		label   *****
+	script(type='text/javascript').
+		$(document).ready(function()
+		{
+			$('#updateUser').click(function()
+			{			
+				$.ajax(
+				{
+					async: true,
+					dataType: "html",
+					success: function (data, textStatus)
+					{
+						$('#form').html(data);
+					},
+					type: "get",
+					url: "/updateUser/" + this.value
+				});	
+			});		
+		});	
+	
+	

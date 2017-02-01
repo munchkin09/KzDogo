@@ -1,0 +1,13 @@
+//- Ejemplo de comentario en jade
+extends layout
+block content
+   div.container
+      div.row
+         div.col-sm-6.col-md-4.col-md-offset-4
+           h1.text-center.login-title Do you need to recover your pass?
+           div.account-wall
+              p Please type your email account to recover your password
+              form(class='form-signin', action='/auth2/emailConfirmation', method='POST')
+                 input(type='text', name='email' class='form-control', placeholder='Email',required, autofocus)
+                 button(class='btn btn-lg btn-primary btn-block', type='submit') Recover pass
+                 span.clearfix

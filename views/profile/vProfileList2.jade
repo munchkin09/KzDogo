@@ -1,0 +1,7 @@
+block content
+  div.list-group
+    each profile in dataProfiles
+        //-p #{profile}
+        a(id='#{profile._id}').list-group-item.friend_link #{profile.nombre_completo.nombre}
+          img(src='img/default_p.jpg').img-mascota.img-circle
+  script().

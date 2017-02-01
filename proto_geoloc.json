@@ -1,0 +1,99 @@
+/*
+Ejemplo de punto. Con este formato tienes POI´s.
+*/
+{
+  "_id" : ObjectId("54e27ef28726e31ac4142137"),
+  "POI_owner" : "pepe el veterinario",
+  "position" : {
+    "type" : "Feature",
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [40.4167754, -3.7037902]
+    },
+    "properties" : {
+      "name" : "Dinagat Islands"
+    }
+  }
+},
+
+
+/*
+Ejemplo de multipunto. Con este formato  tienes rutas.
+*/
+{
+  "_id" : ObjectId("54e27ef28726e31ac4142137"),
+  "POI_owner" : "ruta al lado del rio",
+  "position" : {
+    "type" : "Feature",
+    "geometry" : {
+        "type": "MultiPoint",
+        "coordinates": [[100.0, 0.0],[101.0, 1.0],[100.0, 0.0],
+                        [101.0, 1.0],[100.0, 0.0],[101.0, 1.0]]
+    },
+    "properties" : {
+      "name" : "Prueba 2"
+    }
+  }
+}
+
+documento.user({
+    _id : ObjectId(),
+    "user_name" : value[String],
+    "password" : value[String],
+    "last_login" : value[datetime],
+    "profile_id" : ObjectId()
+    });
+
+documento.profile({
+    _id : ObjectId(),
+    "type_profile" : value[String](Posibles valores: USER, BUSINESS )
+    "Nombre" :
+    {
+        "nombre" : value[String],
+        "apellido1" :  value[String],
+        "apellido2" : value[String]
+    },
+    "fecha_nac": value[datetime],
+    "provincia" : value[String],
+    "ciudad" : value[String],
+    "initial_loc" : {GEOJson},
+    "mascotas" :
+    [
+        {
+            "nombre" : value[String],
+            "edad" : value,
+            "raza" : value[String],
+            "ladrido" : value[String]
+        },
+        {
+            "nombre" : value[String],
+            "edad" : value[String],
+            "raza" : value[String],
+            "ladrido" : value[String]
+        },
+        ...
+    ]
+    "amigos":
+    [
+      {
+          "friend_id" : ObjectId(),
+          "nombre" : value[String],
+          "fecha_amistad" : value[datetime],
+          "last_status" : value[Bool],
+          "last_msg" : value[String]
+      },
+      {},
+      ...
+    ],
+    "groups" :
+    [
+      {
+          "group_id" : ObjectId(),
+          "nombre_grupo" : value[String],
+          "last_msg" : value[String],
+          "last_msg_dt" : value[datetime],
+      },
+      {},
+      ...
+    ]
+});

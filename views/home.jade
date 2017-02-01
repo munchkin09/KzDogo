@@ -1,0 +1,81 @@
+extends layout
+block content
+   nav.navbar.navbar-default.navbar-static-top.navbar-fixed-top
+      div.container
+         div.navbar-header
+            button(data-toggle='collapse' data-target='#main_menu' value=dataUser._id ).navbar-toggle.collapsed
+               span.sr-only Menú
+               span#status_menu.glyphicon.glyphicon-triangle-bottom
+            button(data-container='body' data-placement='bottom')#btnNotify.btn-link.navbar-brand: img(src='/img/logo.png').logo-marca
+         div#main_menu.collapse.navbar-collapse
+            div().tab-panel
+                  ul(role="tablist")#main_tabs.nav.nav-tabs.text-center
+                     li(role="presentation")
+                       a(href="#home" aria-controls="home" role="tab" data-toggle="tab").btn-link: span.glyphicon.glyphicon-home
+                     li(role="presentation")
+                        a(href="#mapa" aria-controls="mapa" role="tab" data-toggle="tab")#btnMapa.btn-link: span.glyphicon.glyphicon-map-marker
+                     li(role="presentation")
+                        a(href="#account" aria-controls="account" role="tab" data-toggle="tab").btn-link: span.glyphicon.glyphicon-cog
+            div.tab-content
+               div(role="tabpanel")#home.tab-pane.fade.in.active
+                  ul(role='menu').list-group
+                   li
+                       a(href='#')#btnHome.list-group-item Inicio mapa
+                   li
+                       a(href='#')#btnPerfil.list-group-item Perfil
+                   li
+                       a(href='#')#btnAmigos.list-group-item Amigos                    
+                        span.badge 14
+                   li
+                       a(href='#')#btnChats.list-group-item Conversaciones
+                        span.badge 14
+                   li
+                       a(href='#')#btnAmigos2.list-group-item Buscador de personas
+               div(role="tabpanel")#mapa.tab-pane.fade
+                ul(role='menu').list-group
+                  li
+                     a(href='#')#addPOI.list-group-item Actualizar POI´s
+                  li
+                     a(href='#')#loadPOIs.list-group-item Cargar POI´s
+                  li
+                     a().list-group-item Amigos
+                        | 
+                        input(type='checkbox' name='geoloc_amigos')
+                  li
+                     a().list-group-item Grupos
+                        | 
+                        input(type='checkbox' name='geoloc_grupos')
+                  li
+                     a().list-group-item Servicios
+                        | 
+                        input(type='checkbox' name='geoloc_servicios')
+               div(role="tabpanel")#account.tab-pane.fade
+                ul(role='menu').list-group
+                 li
+                    a(href='#')#editProfile.list-group-item Editar perfil
+                 li
+                    a(href='#')#addMascotaHead.list-group-item Añadir mascota
+                 li
+                    a(href='#').list-group-item Refrescar mapa
+                 li: a(href='#')#btnLogout.list-group-item Logout
+   div#modalGeneral.modal.fade
+   div#modalMascota.modal.fade
+   div#kz-container
+   div#kz-map
+   //- script(src="/socket.io/socket.io.js").
+   script(src="https://cdn.socket.io/socket.io-1.2.0.js").
+   script(src='/js/controlador.js').
+   script(src='/js/geoloc.js').
+   script().
+      $(document).ready(function()
+      {
+        if (window.location.hash && window.location.hash == '#_=_')
+        {
+          window.location.hash = '';
+          var xxxx = $('.navbar-toggle').val();
+          boton_home(xxxx);
+        }
+      });
+      
+      
+      

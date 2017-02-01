@@ -1,0 +1,57 @@
+block content
+   div(role='tablist' aria-multiselectable='true')#accordion.panel-group
+       if(dataProfiles.peticiones_recibidas.length > 0)
+           div.panel.panel-default
+                div(role='tab')#headingOne.panel-heading.text-center
+                  a(data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne") 
+                     h3 Peticiones pendientes
+                div(role="tabpanel" aria-labelledby="headingTwo")#collapseOne.panel-collapse.collapse.in
+                   div.panel-body.list-group
+                        each pet_receiv in dataProfiles.peticiones_recibidas
+                          if pet_receiv.tipo == 0
+                            img(src='img/default_p.jpg').img-mascota.img-circle
+                            a(id='#{pet_receiv.profile_peticion_id }').list-group-item.friend_link #{pet_receiv.nombre}
+                              input(type='hidden' value='#{pet_receiv._id}')
+                              button(value='true').btnAction.btn.btn-success.btn-md.btn-link
+                                span.glyphicon.glyphicon-ok
+                              button(value='false').btnAction.btn.btn-danger.btn-md.btn-link
+                                span.glyphicon.glyphicon-remove
+                          else
+                            h6 Grupo #{pet_receiv.nombre}
+                            input(type='hidden' value='#{pet_receiv._id}')
+                            button(value='true').btnActionGrupo.btn.btn-success.btn-md.btn-link
+                              span.glyphicon.glyphicon-ok
+                            button(value='false').btnAction.btn.btn-danger.btn-md.btn-link
+                              span.glyphicon.glyphicon-remove
+       div.panel.panel-default
+            a(data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo") 
+               div(role='tab')#headingTwo.panel-heading.text-center
+                  h3 Amigos
+            div(role="tabpanel" aria-labelledby="headingTwo")#collapseTwo.panel-collapse.collapse.in
+               div#friendContainer.panel-body.list-group
+                  if(dataProfiles.amigos)
+                    each amigo in dataProfiles.amigos
+                      a(id='#{amigo.amigo_id }').list-group-item.friend_link
+                        img(src='img/default_p.jpg').img-mascota.img-circle
+                        | #{amigo.nombre}
+                        button(value='#{amigo.conversacion_pair}').btnMensaje.btn.btn-success.btn-md.btn-link
+                            span.glyphicon.glyphicon-envelope  
+                        button(value='remove').btnAction.btn.btn-danger.btn-md.btn-link
+                            span.glyphicon.glyphicon-remove              
+       div.panel.panel-default
+          a(data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseOne")
+             div(role='tab')#headingTwo.panel-heading.text-center 
+               h3 Grupos
+                if(dataProfiles.grupos)
+                    each grupo in dataProfiles.grupos
+                      a(id='#{grupo.conversacion_pair }').list-group-item.group_link
+                        img(src='img/default_p.jpg').img-mascota.img-circle
+                        | #{grupo.nombre}
+                        button(value='#{grupo.conversacion_pair}').btnMensaje.btn.btn-success.btn-md.btn-link
+                            span.glyphicon.glyphicon-envelope  
+                        button(value='remove_group').btnAction.btn.btn-danger.btn-md.btn-link
+                            span.glyphicon.glyphicon-remove
+          div(role="tabpanel" aria-labelledby="headingThree")#collapseThree.panel-collapse.collapse.in
+             div.panel-body.list-group
+                button()#crearGrupo.btn.btn-success.btn-link.img-circle 
+                     span.glyphicon.glyphicon-plus
