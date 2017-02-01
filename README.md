@@ -3,4 +3,6 @@
 # ¿Cómo Arrancar el proyecto?
 # ===========================
 
-nohup node /root/git-repositories/node_socket/index.js &
+npm install
+
+node app.js
