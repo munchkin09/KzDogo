@@ -5,4 +5,4 @@
 
 npm install
 
-node app.js
+node index.js
