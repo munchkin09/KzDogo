@@ -1,6 +1,6 @@
 //  	Connection Settings
-exports.SERVER_URL="proyecto.ruchomolamucho.com";
-exports.SERVER_DB="proyecto.ruchomolamucho.com";
+exports.SERVER_URL="URL_PRINCIPAL";
+exports.SERVER_DB="URL_MONGDB";
 exports.SERVER_PORT=80;
 exports.MONGO_PORT=27017;
 
