@@ -5,8 +5,8 @@ exports.SERVER_PORT=80;
 exports.MONGO_PORT=27017;
 
 //  	FaceBook
-exports.FB_ClientId=1571341299787223;
-exports.FB_Secret='dbc5285af02eb3cc5023e5e5ff6f98f4';
+exports.FB_ClientId=YOUR_CLIENT_ID_ON_FACEBOOK;
+exports.FB_Secret='SECRET_KEY_OF_FACEBOOK_API';
 
 //		Control Errors
 exports.ERROR_FILE="./error.log";
